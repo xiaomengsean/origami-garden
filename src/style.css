@@ -1,0 +1,870 @@
+/* === Origami Garden - Global Styles === */
+
+:root {
+  --cream: #F5F0E8;
+  --paper: #FFF8F0;
+  --warm-brown: #8B7B6B;
+  --light-brown: #C4B5A5;
+  --soft-pink: #F4A7B9;
+  --sage: #5B8C5A;
+  --gold: #DAA520;
+  --text: #4A3F35;
+  --text-light: #8B7B6B;
+  --shadow: rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-lg: 20px;
+  --font: 'Georgia', 'Times New Roman', serif;
+  --font-ui: system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--cream);
+  font-family: var(--font-ui);
+  color: var(--text);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-container {
+  height: 100%;
+}
+
+.screen-container {
+  height: 100%;
+}
+
+/* === Transitions === */
+.transition-fade-out .screen-container {
+  animation: fadeOut 200ms ease-out forwards;
+}
+.transition-fade-in .screen-container {
+  animation: fadeIn 300ms ease-in forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: scale(0.98); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* === Screen Base === */
+.screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  padding-top: max(16px, env(safe-area-inset-top));
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.screen-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  min-height: 44px;
+}
+
+.screen-title {
+  font-family: var(--font);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--paper);
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+}
+.back-btn:active { transform: scale(0.9); }
+
+.header-stars, .header-info {
+  font-size: 14px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* === Main Menu === */
+.main-menu {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #FFF5F0 0%, #FFE8EC 30%, #F5F0E8 70%, #E8F0E5 100%);
+}
+
+.menu-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-petal {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.4;
+  animation: floatPetal 8s ease-in-out infinite;
+}
+.petal-1 { left: 10%; top: 20%; animation-delay: 0s; }
+.petal-1::after { content: '🌸'; }
+.petal-2 { right: 15%; top: 30%; animation-delay: 1.5s; }
+.petal-2::after { content: '🍃'; }
+.petal-3 { left: 25%; bottom: 30%; animation-delay: 3s; }
+.petal-3::after { content: '🌿'; }
+.petal-4 { right: 20%; bottom: 20%; animation-delay: 4.5s; }
+.petal-4::after { content: '🌸'; }
+.petal-5 { left: 50%; top: 15%; animation-delay: 6s; }
+.petal-5::after { content: '🍃'; }
+
+@keyframes floatPetal {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(15px, -20px) rotate(45deg); }
+  50% { transform: translate(-10px, -40px) rotate(90deg); }
+  75% { transform: translate(20px, -15px) rotate(135deg); }
+}
+
+.menu-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.menu-title-area {
+  text-align: center;
+}
+
+.menu-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.menu-title {
+  font-family: var(--font);
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+  letter-spacing: -1px;
+}
+
+.menu-subtitle {
+  font-size: 16px;
+  color: var(--text-light);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.menu-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--paper);
+  padding: 6px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.star-icon { font-size: 16px; }
+.star-count { font-size: 18px; font-weight: 600; color: var(--gold); }
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 240px;
+}
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--paper);
+  font-size: 16px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.menu-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 6px var(--shadow);
+}
+.menu-btn-primary {
+  background: linear-gradient(135deg, #F4A7B9, #FFD1DC);
+  color: #4A3F35;
+  font-weight: 600;
+}
+.btn-icon { font-size: 20px; }
+
+/* === World Select === */
+.world-select-screen {
+  background: var(--cream);
+}
+
+.world-grid {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.world-card {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-ui);
+  background: linear-gradient(135deg, var(--world-bg1), var(--world-bg2));
+  box-shadow: 0 4px 16px var(--shadow);
+  transition: transform 0.15s;
+}
+.world-card:active { transform: scale(0.98); }
+.world-card.locked {
+  opacity: 0.5;
+  filter: grayscale(0.5);
+}
+
+.world-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.world-plants { font-size: 28px; margin-bottom: 4px; }
+.world-name {
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+.world-subtitle {
+  font-size: 13px;
+  color: var(--text-light);
+  font-style: italic;
+}
+.world-progress { margin-top: 8px; }
+.world-stars {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+}
+.world-lock {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--warm-brown);
+  font-weight: 500;
+}
+
+/* === Level Select === */
+.level-select-screen {
+  background: linear-gradient(180deg, var(--world-bg1), var(--world-bg2));
+}
+
+.world-subtitle-text {
+  font-size: 14px;
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.level-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 8px 0;
+  overflow-y: auto;
+  align-content: start;
+}
+
+.level-btn {
+  aspect-ratio: 1;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px var(--shadow);
+  font-family: var(--font-ui);
+  transition: transform 0.15s;
+  position: relative;
+}
+.level-btn:active { transform: scale(0.92); }
+.level-btn.locked {
+  background: #E8E0D8;
+  opacity: 0.5;
+}
+.level-btn.perfect {
+  border-color: var(--gold);
+  box-shadow: 0 2px 12px rgba(218,165,32,0.3);
+}
+
+.level-number {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+.level-stars {
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.level-lock {
+  position: absolute;
+  font-size: 14px;
+}
+
+/* === Game Screen === */
+.game-screen {
+  background: var(--cream);
+  padding: 8px;
+  gap: 8px;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.level-label {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.fold-counter {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hint-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--paper);
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: transform 0.15s;
+}
+.hint-btn:active { transform: scale(0.9); }
+
+.hint-banner {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #fff8f0;
+  color: #5c4636;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px var(--shadow);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.game-canvas-area {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+.control-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 20px;
+  border: none;
+  background: var(--paper);
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: 0 2px 8px var(--shadow);
+  font-family: var(--font-ui);
+  transition: transform 0.15s;
+}
+.control-btn:active { transform: scale(0.92); }
+.control-icon { font-size: 20px; }
+.control-label { font-size: 11px; color: var(--text-light); font-weight: 500; }
+
+/* === Level Complete Overlay === */
+.level-complete-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 300ms ease;
+  backdrop-filter: blur(4px);
+}
+
+.level-complete-card {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  width: 85%;
+  max-width: 340px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+  animation: popIn 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.complete-petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.complete-petal {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.3;
+  animation: floatPetal 6s ease-in-out infinite;
+}
+.cp-1 { top: 5%; left: 10%; }
+.cp-2 { top: 10%; right: 15%; animation-delay: 1s; }
+.cp-3 { bottom: 15%; left: 15%; animation-delay: 2s; }
+.cp-4 { bottom: 10%; right: 10%; animation-delay: 3s; }
+
+.complete-title {
+  font-family: var(--font);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.complete-stars {
+  font-size: 32px;
+  color: var(--gold);
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+
+.complete-info {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 11px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.plant-reward {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #FFF5F0, #F5FFE8);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.reward-icon { font-size: 32px; }
+.reward-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.reward-label { font-size: 11px; color: var(--text-light); text-transform: uppercase; }
+.reward-phase { font-size: 16px; font-weight: 600; color: var(--sage); }
+
+.complete-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.complete-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--cream);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.complete-btn:active { transform: scale(0.95); }
+.complete-btn-primary {
+  background: linear-gradient(135deg, #F4A7B9, #FFD1DC);
+  color: var(--text);
+}
+
+.complete-btn-secondary {
+  border: none;
+  background: none;
+  color: var(--text-light);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 8px;
+  font-family: var(--font-ui);
+}
+
+/* === My Garden === */
+.garden-screen {
+  background: linear-gradient(180deg, #F5F0E8, #E8F0E5);
+}
+
+.garden-progress {
+  margin-bottom: 16px;
+}
+
+.garden-progress-bar {
+  height: 6px;
+  background: #E0D8D0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.garden-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sage), #8BC34A);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.garden-progress-text {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.garden-zones {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.garden-zone {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.zone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.zone-name {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.zone-complete {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.zone-plants {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.plant-card {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.15s;
+}
+
+.plant-card.plant-locked {
+  opacity: 0.4;
+}
+
+.plant-card.plant-fruiting {
+  background: linear-gradient(135deg, #FFF8E8, #FFF5F0);
+  box-shadow: 0 2px 12px rgba(218,165,32,0.15);
+}
+
+.plant-icon-area {
+  font-size: 36px;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.plant-sparkle {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  font-size: 14px;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.plant-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.plant-phase {
+  font-size: 11px;
+  color: var(--text-light);
+  text-transform: capitalize;
+}
+
+.phase-dots {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.phase-dot {
+  font-size: 8px;
+  color: #D0C8C0;
+}
+.phase-dot.active {
+  color: var(--plant-color, var(--sage));
+}
+
+/* === Settings === */
+.settings-screen {
+  background: var(--cream);
+}
+
+.settings-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-group {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.settings-group-title {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #F0E8E0;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.setting-slider {
+  width: 120px;
+  accent-color: var(--soft-pink);
+}
+
+.setting-toggle {
+  padding: 6px 16px;
+  border: 2px solid #D0C8C0;
+  border-radius: 20px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.setting-toggle.active {
+  border-color: var(--sage);
+  background: var(--sage);
+  color: white;
+}
+
+.about-info {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.about-info p {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.about-subtitle {
+  color: var(--text-light) !important;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--light-brown);
+  border-radius: 2px;
+}
+
+/* === Landscape adjustment === */
+@media (orientation: landscape) {
+  .game-screen {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .game-header {
+    width: 100%;
+  }
+  .game-canvas-area {
+    flex: 1;
+  }
+  .game-controls {
+    width: 80px;
+    flex-direction: column;
+  }
+}
